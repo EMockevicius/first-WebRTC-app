@@ -1,3 +1,5 @@
+Tested on Xiaomi mi A2 google chrome and duckduckgo browsers
+
 # mediaLab4
 
 This lab aims to build your first WebRTC app.

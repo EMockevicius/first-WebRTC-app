@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+
+    <base target="_blank">
+
+    <title>getUserMedia + CSS filters</title>
+
+    <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/main.css">
+	<script src="js/tracking-min.js"></script>
+    <script src="js/face-min.js"></script>
+   <script src="js/dat.gui.min.js"></script>
+
+
+    <style>
+        .none {
+            -webkit-filter: none;
+            filter: none;
+        }
+        .blur {
+            -webkit-filter: blur(3px);
+            filter: blur(3px);
+        }
+        .grayscale {
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+        }
+        .invert {
+            -webkit-filter: invert(1);
+            filter: invert(1);
+        }
+        .sepia {
+            -webkit-filter: sepia(1);
+            filter: sepia(1);
+        }
+        button#snapshot {
+            margin: 0 10px 25px 0;
+            width: 110px;
+        }
+        video{
+    margin-left: 230px;
+    margin-top: 120px;
+    position: absolute;
+  }
+  canvas{
+    margin-left: 230px;
+    margin-top: 120px;
+    position: absolute;
+  }
+    </style>
+
+</head>
+
+<body>
+
+
+    <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a> <span>getUserMedia + CSS filters</span>
+    </h1>
+ <div class="demo-container">
+      <video id="video" width="320" height="240" preload autoplay loop muted></video>
+      <canvas id="canvas" width="320" height="240"></canvas>
+    </div>
+<div id="container">
+    <label for="filter">Filter: </label>
+    <select id="filter">
+        <option value="none">None</option>
+        <option value="blur">Blur</option>
+        <option value="grayscale">Grayscale</option>
+        <option value="invert">Invert</option>
+        <option value="sepia">Sepia</option>
+    </select>
+
+    <button id="snapshot">Apply</button>
+</div>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
+
+<script src="js/ga.js"></script>
+
+<script>
+    window.onload = function() {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      var tracker = new tracking.ObjectTracker('face');
+      tracker.setInitialScale(4);
+      tracker.setStepSize(2);
+      tracker.setEdgesDensity(0.1);
+      tracking.track('#video', tracker, { camera: true });
+      tracker.on('track', function(event) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        event.data.forEach(function(rect) {
+          context.strokeStyle = '#a64ceb';
+          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+          context.font = '11px Helvetica';
+          context.fillStyle = "rgba(255, 255, 255, 1)";
+          context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+          context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+        });
+      });
+      var gui = new dat.GUI();
+      gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
+      gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
+      gui.add(tracker, 'stepSize', 1, 5).step(0.1);
+    };
+  </script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 Tested on Xiaomi mi A2 google chrome and duckduckgo browsers
-Test the project yourself at https://theboxnwb.github.io/mediaLab4/src/
+Test the project yourself at https://theboxnwb.github.io/mediaLab4/
 
 # mediaLab4
 

@@ -1,18 +1,7 @@
 Tested on Xiaomi mi A2 google chrome and duckduckgo browsers
 
-Test the project yourself at https://theboxnwb.github.io/mediaLab4/
+Test the project yourself at https://eimantasmockevicius.github.io/mediaLab4/
 
-# mediaLab4
-
-This lab aims to build your first WebRTC app.
-
-There are many open source alternatives to build a simple communication application like Skype. One of the web based solution is WebRTC. You can try a huge set of examples: 
-https://webrtc.github.io/samples/
-
-# Requirements for repository
-  - You have to clone this repository and make two branches (master and develop).
-  - The develop branch should contain commits of every new feature of the AR application.
-  - When all features will be ready you have to merge the development branch to the master.
 
 # Requirements for WebRTC application
 There are three options to choose from. 

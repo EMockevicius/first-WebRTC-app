@@ -1,6 +1,6 @@
 Tested on Xiaomi mi A2 google chrome and duckduckgo browsers
 
-Test the project yourself at https://eimantasmockevicius.github.io/mediaLab4/
+Test the project yourself at https://eimantasmockevicius.github.io/first-WebRTC-app/
 
 
 # Requirements for WebRTC application
